@@ -10,8 +10,9 @@
 ## 各种算法的空间复杂度
 
 ## VSCode
-[Introductory Videos for C++](https://code.visualstudio.com/docs/cpp/introvideos-cpp)
-[开发神器VSCode配置C/C++环境](https://mp.weixin.qq.com/s/H4WsUtequaO0vLuIBXLX7w)
+1. [Introductory Videos for C++](https://code.visualstudio.com/docs/cpp/introvideos-cpp)
+2. [开发神器VSCode配置C/C++环境](https://mp.weixin.qq.com/s/H4WsUtequaO0vLuIBXLX7w)
+3. cpp: The C and C++ preprocessor; gcc: The C compiler; g++: The C++ compile
 
 ## [www.hackerrank.com](https://www.hackerrank.com/)
 
