@@ -13,6 +13,8 @@
 1. [Introductory Videos for C++](https://code.visualstudio.com/docs/cpp/introvideos-cpp)
 2. [开发神器VSCode配置C/C++环境](https://mp.weixin.qq.com/s/H4WsUtequaO0vLuIBXLX7w)
 3. cpp: The C and C++ preprocessor; gcc: The C compiler; g++: The C++ compile
+4. MinGW：MinGW是“Minimalist GNU for Windows”的缩写，是一个Windows上的GNU开发环境。它提供了GNU编译器和其他工具，可以用来编译和链接C和C++代码，生成Windows下的可执行文件和动态链接库。MinGW不包含UNIX/Linux下的系统库，因此无法编译使用这些库的代码
+5. MSYS：MSYS是“Minimal SYStem”的缩写，是一个轻量级的UNIX/Linux兼容环境。它提供了一组UNIX/Linux命令和工具，可以在Windows上使用。与MinGW不同，MSYS包含UNIX/Linux下的系统库，因此可以用来编译和链接使用这些库的代码
 
 ## [www.hackerrank.com](https://www.hackerrank.com/)
 
