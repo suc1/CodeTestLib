@@ -1,4 +1,8 @@
 # CodeTestLib
+搜索解两种方法:
+1. 广度搜索: 能找到最优解，使用队列循环
+2. 深度搜索: 能快速找到一个可行解，使用栈递归
+
 降低时间复杂度思考方法:
 1. 两层循环，复杂度O(n*n)
 2. 一个选择是O(n*ln(n))，一个循环改成取半(二分法查找是ln(n)), 二分法排序.
@@ -46,7 +50,10 @@
 ### 1 Week Preparation Kit
 
 ### 1 Month Preparation Kit
-
+1. The Maximum Subarray
+2. Lily's Homework
+3. [图搜索算法：DFS、BFS、GBFS、Dijkstra、A*](https://zhuanlan.zhihu.com/p/346666812)
+4. 图搜索算法总结: CastleOnTheGrid.cpp
 ### 3 Months Preparation Kit
 
 ## [leetcode.com  leetcode.cn](https://leetcode.com)

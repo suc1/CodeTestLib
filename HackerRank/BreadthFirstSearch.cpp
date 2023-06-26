@@ -14,6 +14,17 @@ Depth-first search   深度
 6. 有人使用边访问过删除的方法，避免采用visit (!!!代码简洁多了!!!)(副作用是无法复用)
 6.1 但是由于边是双向的，已经访问的节点会再次入队列。所以计算深度需要判断如果深度是原始值才需要更新
 6.2 还是使用visit
+7. 等权图宽度搜索，第一次碰到的深度 不一定 是最小值！！！如果是树对，但是这是图(和Visit矛盾)
+7.1 因为这是队列，同一批压入深度相同（点，深度）:（2， 1），（3，1），根到节点3的最小深度是1
+7.2 但是下一批处理节点(2, 1)，如果它连接到3，深度为2。节点3没有访问，入列。队列是（3, 1）, (3, 2)
+7.3 紧接着处理（3，1）节点3标记为已访问，但是(3,2)已经在队列中，不影响处理节点(3,2)
+7.4 所以需要取最小值: 设置节点访问的时序非常重要
+7.5 !!!教训: 一访问到立即置位，避免重复入队列, 而且再不超时!!!
+7.6 图形是三角形
+
+!!!!!!倒数第二个执行方法，代码简洁，但是有一个TimeOut case5, 原因是7.5重复入队列!!!!!
+
+求连通图的节点数ComponentsInAGraph.cpp
 #endif
 
 #include <vector>
@@ -115,7 +126,7 @@ vector<int> bfs(int n, int m, vector<vector<int>> edges, int s) {
     return g.BFS(s);
 }
 
-#else
+#elif 0
 
 class Graph {
     public:
@@ -190,5 +201,83 @@ void Graph::BFS(queue<int> &q) {
 vector<int> bfs(int n, int m, vector<vector<int>> edges, int s) {
     Graph g(n, m, edges);
     return g.BFS(s);
+}
+#elif 0
+void Debug(const vector<int> &v) {
+    for(auto i : v) {
+        cout << i << ' ';
+    }
+    cout << endl;
+}
+
+vector<int> bfs(int n, int m, vector<vector<int>> edges, int s) {
+    //cout << "n=" <<n << " m=" << m << " s=" << s <<endl; 
+    vector<vector<int>> table(n);
+    for(size_t i=0; i<edges.size(); ++i) {
+        table[ edges[i][0]-1 ].push_back( edges[i][1]-1 );
+        table[ edges[i][1]-1 ].push_back( edges[i][0]-1 );
+    }
+    
+    vector<int> ret(n, -1);
+    bool v[n] = {false};
+    queue< pair<int,int> > qu;  //pair(vetex, layer)
+    qu.push( std::make_pair(s-1, 0) );
+    
+    while(!qu.empty()) {
+        auto cur = qu.front();
+        v[cur.first] = true;
+        if(ret[cur.first]==-1) ret[cur.first] = cur.second;
+        else ret[cur.first] = min(ret[cur.first], cur.second);
+        
+        for(auto j : table[cur.first]) {
+            if(!v[j]) {
+                qu.push( std::make_pair(j, cur.second+6));
+            }
+        }
+        qu.pop();
+    }
+    
+    //Debug(ret);
+    ret.erase( ret.begin()+s-1 );
+    return ret;    
+}
+#else 
+void Debug(const vector<int> &v) {
+    for(auto i : v) {
+        cout << i << ' ';
+    }
+    cout << endl;
+}
+
+vector<int> bfs(int n, int m, vector<vector<int>> edges, int s) {
+    //cout << "n=" <<n << " m=" << m << " s=" << s <<endl; 
+    vector<vector<int>> table(n);
+    for(size_t i=0; i<edges.size(); ++i) {
+        table[ edges[i][0]-1 ].push_back( edges[i][1]-1 );
+        table[ edges[i][1]-1 ].push_back( edges[i][0]-1 );
+    }
+    
+    vector<int> ret(n, -1);
+    bool v[n] = {false};
+    v[s-1] = true;
+    queue< pair<int,int> > qu;  //pair(vertex, road+1)
+    qu.push( std::make_pair(s-1, 0) );
+    
+    while(!qu.empty()) {
+        auto cur = qu.front();
+        ret[cur.first] = cur.second;
+                
+        for(auto j : table[cur.first]) {
+            if(!v[j]) {
+                qu.push( std::make_pair(j, cur.second+6));
+                v[j] = true;
+            }
+        }
+        qu.pop();
+    }
+    
+    //Debug(ret);
+    ret.erase( ret.begin()+s-1 );
+    return ret;    
 }
 #endif
