@@ -3,6 +3,13 @@
 palindrome Index
 https://www.hackerrank.com/test/crlnp8rgs12/questions/a2b68fq8p7b
 */
+/*
+fvyqxqxynewuebtcuqdwyetyqqisappmunmnldmkttkmdlnmnumppasiqyteywdquctbeuwenyxqxqyvf
+0123456789012345678901234                               4321098765432109876543210
+
+第一种解法返回24，这是正确的答案
+TestCase5返回25，也是正确的答案, 因为是两个相同的qq
+*/
 #include <bits/stdc++.h>
 
 using namespace std;

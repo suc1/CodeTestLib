@@ -2,7 +2,13 @@
 comp()是实现<. 如果==返回 true 会Segmentation Fault???
 https://www.hackerrank.com/challenges/big-sorting/problem
 */
-#if 1   //3 Segmentation Fault: case 3 = 7693 string; case 4 = 9446; case 6 = 33636
+/*
+std::qsort() 是C
+std::sort() 是C++
+
+comp()升序默认是 <
+*/
+#if 1
 bool comp(const string& s1, const string& s2) {
     size_t len1 = s1.size();
     size_t len2 = s2.size();
@@ -15,7 +21,7 @@ bool comp(const string& s1, const string& s2) {
         if(s1[i]>s2[i]) return false;
     }
     
-    return true; //== // return false is OK
+    return false;       //== //true: case 3,4,6 will Segmentation Fault
 }
 #elif 0     //ok
 bool comp(const string& s1, const string& s2) {

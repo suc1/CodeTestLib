@@ -7,25 +7,26 @@ void PrintVector(const char* explain, const vector<int>& a) {
 }
 
 vector<int> GetPrime(int q) {
-    vector<int> ret;
+    vector<int> ret = {2,3,5,7};
+    q -= ret.size();
+    int start = 7+1;
     
-    ret.push_back(2);       //q=1, How many prime should be calculated
-    if(q>=2) ret.push_back(3);
-    if(q>=3) ret.push_back(5);
-    
-    int i = 7;
-    while(ret.size()<q) {
-        bool isPrime = true;
-        for(int j=0; j<ret.size(); ++j) {
-            if(i % ret[j]==0) {
-                isPrime = false;
+    while(q>0) {
+        bool prime = true;
+        for(int i: ret) {
+            if(start%i==0) {
+                prime = false;
                 break;
             }
         }
-        if(isPrime) ret.push_back(i);
-        ++i;
-    }
         
+        if(prime) {
+            ret.push_back(start);
+            start += 2;
+            --q;
+        } else ++start;
+    }
+    
     return ret;
 }
 

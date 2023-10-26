@@ -13,6 +13,7 @@ void AppendNewNode(SinglyLinkedList& newList, int data) {
 
 #endif
 
+#if 0       //Slow, need more memory, should delete head1 & head2
 SinglyLinkedListNode* mergeLists(SinglyLinkedListNode* head1, SinglyLinkedListNode* head2) {
     SinglyLinkedList newList;
     
@@ -42,3 +43,36 @@ SinglyLinkedListNode* mergeLists(SinglyLinkedListNode* head1, SinglyLinkedListNo
     
     return newList.head;
 }
+#else   //fast, no duplicate
+SinglyLinkedListNode* mergeLists(SinglyLinkedListNode* head1, SinglyLinkedListNode* head2) {
+    if(head1==nullptr) return head2;
+    if(head2==nullptr) return head1;
+    
+    SinglyLinkedListNode *head;
+    if(head1->data<=head2->data) {
+        head = head1;
+        head1 = head1->next;
+    } else {
+        head = head2;
+        head2 = head2->next;
+    }
+
+    SinglyLinkedListNode *cur = head;
+    while(head1!=nullptr && head2!=nullptr) {
+        if(head1->data<=head2->data) {
+            cur->next = head1;
+            cur = head1;
+            head1 = head1->next;
+        } else {
+            cur->next = head2;
+            cur = head2;
+            head2 = head2->next;
+        }
+    }
+    
+    if(head1!=nullptr) cur->next=head1;
+    else if(head2!=nullptr) cur->next=head2;
+    
+    return head;
+}
+#endif

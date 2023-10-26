@@ -1,6 +1,8 @@
 /*
 https://www.hackerrank.com/test/3fmlgi1ase7/questions/bae9p3effgk
 
+在求两个集合的差时，只能统计正差，不能统计负差（重复）
+`if(ita->second > itb->second)`
 */
 int anagram(string s) {
     int len = s.size();

@@ -1,5 +1,5 @@
 /*
-可以连续两次undo
+可以连续两次undo, 使用 Before Image
 */
 int main() {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */
